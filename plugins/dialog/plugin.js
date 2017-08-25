@@ -2995,6 +2995,9 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 	 * @param {String} dialogName The name of the dialog to open when executing
 	 * this command.
 	 * @param {Object} [ext] Additional command definition's properties.
+	 * You can provide additional property (`tab`) to ext object if you wish to open dialog on specific tab.
+	 * 		// Open dialog on 'advanced' tab
+	 *		editor.addCommand( 'keystroke', new CKEDITOR.dalogCommand( 'a11yHelp', { tab: 'keystroke' } ) );
 	 */
 	CKEDITOR.dialogCommand = function( dialogName, ext ) {
 		this.dialogName = dialogName;
