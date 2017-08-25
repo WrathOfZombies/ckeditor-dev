@@ -3002,11 +3002,11 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 	};
 
 	CKEDITOR.dialogCommand.prototype = {
-		exec: function( editor, commandDefinition ) {
+		exec: function( editor ) {
+			var that = this;
 			editor.openDialog( this.dialogName, function( dialog ) {
-				if ( commandDefinition && commandDefinition.tab ) {
-					// Check if `tab ` is valid tab name
-					dialog.selectPage( commandDefinition.tab );
+				if ( that && that.tab ) {
+					dialog.selectPage( that.tab );
 				}
 			} );
 		},
