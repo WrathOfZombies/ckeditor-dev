@@ -863,7 +863,9 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 			this.reset();
 
 			// Select the first tab by default.
-			this.selectPage( this.definition.contents[ 0 ].id );
+			if ( this._.currentTabId === null ) {
+				this.selectPage( this.definition.contents[ 0 ].id );
+			}
 
 			// Set z-index.
 			if ( CKEDITOR.dialog._.currentZIndex === null )
@@ -3000,8 +3002,13 @@ CKEDITOR.DIALOG_STATE_BUSY = 2;
 	};
 
 	CKEDITOR.dialogCommand.prototype = {
-		exec: function( editor ) {
-			editor.openDialog( this.dialogName );
+		exec: function( editor, commandDefinition ) {
+			editor.openDialog( this.dialogName, function( dialog ) {
+				if ( commandDefinition && commandDefinition.tab ) {
+					// Check if `tab ` is valid tab name
+					dialog.selectPage( commandDefinition.tab );
+				}
+			} );
 		},
 
 		// Dialog commands just open a dialog ui, thus require no undo logic,
