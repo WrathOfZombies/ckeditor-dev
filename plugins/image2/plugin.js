@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @license Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
@@ -1171,7 +1171,24 @@
 
 				nativeEvt, newWidth, newHeight, updateData,
 				moveDiffX, moveDiffY, moveRatio;
+			
+			// The maximum size of the image
+			var boundarySelector = editor.config.image2_resizeBoundarySelector,			
+				maxWidth = 0,
+				maxHeight = 0;
 
+			if (boundarySelector) {
+				var boundaryElement = image.getAscendant(function(e) {
+					if (e.$ && e.$.matches(boundarySelector)) {
+						return true;
+					}
+				});
+
+				if (boundaryElement && boundaryElement.$ && ratio != 0) {
+					maxWidth = boundaryElement.$.clientWidth;
+					maxHeight = maxWidth / ratio;
+				}				
+			}
 			// Save the undo snapshot first: before resizing.
 			editor.fire( 'saveSnapshot' );
 
@@ -1204,15 +1221,21 @@
 				}
 			}
 
-			// Calculate with first, and then adjust height, preserving ratio.
+			// Calculate with first, and then adjust height, preserving ratio. Limit to max if provided.
 			function adjustToX() {
 				newWidth = startWidth + factor * moveDiffX;
+				if (maxWidth > 0 && newWidth > maxWidth) {
+					newWidth = maxWidth;
+				}
 				newHeight = Math.round( newWidth / ratio );
 			}
 
-			// Calculate height first, and then adjust width, preserving ratio.
+			// Calculate height first, and then adjust width, preserving ratio. Limit to max if provided.
 			function adjustToY() {
 				newHeight = startHeight - moveDiffY;
+				if (maxHeight > 0 && newHeight > maxHeight) {
+					newHeight = maxHeight;
+				}
 				newWidth = Math.round( newHeight * ratio );
 			}
 
