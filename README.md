@@ -2,6 +2,9 @@
 
 [![devDependencies Status](https://david-dm.org/ckeditor/ckeditor-dev/dev-status.svg)](https://david-dm.org/ckeditor/ckeditor-dev?type=dev)
 
+[![Visual Studio Team services](https://img.shields.io/vso/build/domoreexp/11ac29bc-5a99-400b-b225-01839ab0c9df/1423.svg)](https://domoreexp.visualstudio.com/Teamspace/_build/index?definitionId=1423&_a=history)
+
+
 This repository contains the development version of CKEditor.
 
 **Attention:** The code in this repository should be used locally and for
