@@ -1,6 +1,6 @@
 {
 	"name": "@microsoft/ckeditor-dev",
-	"version": "4.7.2-patch.1",
+	"version": "4.7.2-patch.2",
 	"description": "The development version of CKEditor - JavaScript WYSIWYG web text editor.",
 	"devDependencies": {
 		"benderjs-coverage": "^0.2.1",
@@ -31,6 +31,20 @@
 	"homepage": "http://ckeditor.com",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ckeditor/ckeditor-dev.git"
-	}
+		"url": "https://github.com/WrathOfZombies/ckeditor-dev.git"
+	},
+	"files": [
+		"adapters/",
+		"core/",
+		"dev/",
+		"lang/",
+		"plugins/",
+		"skins/moono",
+		"ckeditor.js",
+		"config.js",
+		"README.md",
+		"styles.js",
+		"contents.css",
+		"package.json"
+	]
 }
